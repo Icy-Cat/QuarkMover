@@ -64,12 +64,15 @@ def browser_check() -> Dict[str, Any]:
     return {"found": False, "path": "", "name": ""}
 
 
-def pick_free_port(preferred: int = 8899, max_tries: int = 20) -> int:
-    """从 preferred 开始尝试，找到第一个可用端口。"""
+def pick_free_port(preferred: int = 7788, max_tries: int = 20) -> int:
+    """从 preferred 开始尝试，找到第一个可用端口。
+    Windows 上不能用 SO_REUSEADDR（允许重复绑定），改用 SO_EXCLUSIVEADDRUSE。
+    """
     for port in range(preferred, preferred + max_tries):
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                if sys.platform == "win32":
+                    s.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)  # type: ignore[attr-defined]
                 s.bind(("127.0.0.1", port))
                 return port
         except OSError:
