@@ -56,3 +56,15 @@ A: 登录态已过期，点击右上角「扫码登录夸克」重新登录。
 
 **Q: 二创功能报错？**
 A: 需要在设置中填写有效的 DeepSeek API Key（[获取地址](https://platform.deepseek.com/)）。
+
+## 公众号与交流群
+
+想获取最新教程、工具更新和使用交流，可以扫码：
+
+### 公众号
+
+![公众号二维码](./static/qr_gongzhonghao.webp)
+
+### 交流群
+
+![交流群二维码](./static/qr_group.webp)
