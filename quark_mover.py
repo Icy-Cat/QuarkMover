@@ -1298,7 +1298,7 @@ button.primary:disabled { background: var(--bg-2); color: var(--text-2); border-
     <div class="brand-mark"></div>
     <div>
       <span class="brand-name">夸克转存助手</span>
-      <span class="brand-sub">/ V1.0</span>
+      <span class="brand-sub">/ V1.0.1</span>
     </div>
   </div>
   <div class="status-rail">
