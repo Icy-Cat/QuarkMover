@@ -14,5 +14,6 @@ config/cookies.txt
 config/config.json
 config/accounts.json
 .claude/
+.playwright-mcp/
 .gstack/
 .DS_Store
