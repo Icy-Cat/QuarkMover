@@ -62,16 +62,14 @@ jobs:
               ;;
             zip)
               chmod +x "${{ matrix.pyinstaller_name }}"
-              # 重命名成带版本号的稳定文件名后再打包；zip -y 保留文件属性
-              mv "${{ matrix.pyinstaller_name }}" "QuarkMover"
               OUT="${BASE}.zip"
-              zip -y "${OUT}" QuarkMover
+              # 包内统一命名为 QuarkMover，便于用户解压后直接 ./QuarkMover 运行
+              zip -y -j "${OUT}" "${{ matrix.pyinstaller_name }}"
               ;;
             tar.gz)
               chmod +x "${{ matrix.pyinstaller_name }}"
-              mv "${{ matrix.pyinstaller_name }}" "QuarkMover"
               OUT="${BASE}.tar.gz"
-              tar -czf "${OUT}" QuarkMover
+              tar -czf "${OUT}" "${{ matrix.pyinstaller_name }}"
               ;;
           esac
           echo "artifact_name=${OUT}" >> "$GITHUB_OUTPUT"
