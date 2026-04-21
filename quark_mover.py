@@ -419,7 +419,10 @@ def deepseek_rewrite(client: httpx.Client, text: str) -> str:
 
 
 # ============ Pipeline ============
-SHARE_RE = re.compile(r"https?://pan\.quark\.cn/s/([A-Za-z0-9]+)(?:-pwd([A-Za-z0-9]+))?")
+# 链接正则：
+#   - https?:// 前缀可选（很多人复制小红书/微信时只保留裸域名）
+#   - 也容忍 s/ 后面紧跟中文（如 "pan.quark.cn/s/abc提取码:xxx"）
+SHARE_RE = re.compile(r"(?:https?://)?pan\.quark\.cn/s/([A-Za-z0-9]+)(?:-pwd([A-Za-z0-9]+))?")
 PASSCODE_RE = re.compile(
     r"(?:提取码|访问码|密码|pwd|passcode|code)\s*[:：=]?\s*([A-Za-z0-9]{4,8})",
     re.IGNORECASE,
